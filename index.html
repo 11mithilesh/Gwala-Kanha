@@ -216,6 +216,7 @@ body{
           <button class="btn alt" id="backBtn" type="button">Back</button>
           <button class="btn alt capBtn" id="capBtn" type="button" title="Changes apply from the next boss fight. Growing: each demon gets stronger every time you meet it again. Held: a demon never gets stronger than the toughest version you have already beaten.">Bosses: growing</button>
         </div>
+        <div class="calfline" id="capNote" role="status" hidden></div>
         <div class="legend"><span class="gears"><i class="on"></i><i class="on"></i><i></i></span> Medals: reach the temple · collect every matka · beat the par time</div>
       </section>
 
@@ -2300,7 +2301,7 @@ const UI = {
     const u = Save.data.unlocked;
     $('playBtn').textContent = u > 0 ? `Continue ${label(u)}` : 'Play';
   },
-  showLevels() { this.page = null; if (this.paused) this.setPaused(false, true); Music.stop(); this.buildLevels(); this.toTitleScene(); show($('sTitle'), false); this.only('sLevels'); },
+  showLevels() { this.page = null; $('capNote').hidden = true; if (this.paused) this.setPaused(false, true); Music.stop(); this.buildLevels(); this.toTitleScene(); show($('sTitle'), false); this.only('sLevels'); },
   toTitleScene() {
     show($('hud'), false);
     const s = this.scene;
@@ -2353,7 +2354,11 @@ const UI = {
   },
   toggleCap() {
     Save.data.capBosses = !Save.data.capBosses; Save.store(); this.refreshCap();
-    this.toast(Save.data.capBosses ? 'Demons will not get stronger than the toughest one you have beaten' : 'Demons grow stronger each time you meet them');
+    const note = $('capNote');
+    note.textContent = Save.data.capBosses
+      ? 'Held: each demon stays at the toughest strength you have already beaten him at. Applies from the next boss fight.'
+      : 'Growing: each demon gets a little stronger every time you meet him again. Applies from the next boss fight.';
+    note.hidden = false;
   },
   toggleSound() {
     Snd.setMuted(!Snd.muted);
