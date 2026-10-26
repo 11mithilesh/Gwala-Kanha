@@ -60,7 +60,12 @@ body{
 .hud-btn{font:inherit;color:var(--paper);background:rgba(26,28,44,.55);border:.15em solid var(--steel);padding:.25em .5em;cursor:pointer;line-height:1}
 
 /* Panels */
-.screen{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:1em;padding:1.6em 2.2em;box-sizing:border-box}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;justify-content:safe center;gap:1em;padding:1.6em 2.2em;box-sizing:border-box}
+#sTitle{gap:.75em;padding-block:1.2em}
+#sTitle .logo{font-size:3.2em;white-space:nowrap}
+#sTitle .keys{display:none}
+#sTitle .corner{position:absolute;top:.8em;right:.9em;font-size:.85em}
+#sTitle .p{font-size:.9em;line-height:1.45}
 .dim{background:rgba(26,28,44,.78)}
 .left{align-items:flex-start;background:linear-gradient(90deg,rgba(26,28,44,.92) 0%,rgba(26,28,44,.7) 45%,rgba(26,28,44,0) 75%)}
 .center{align-items:center;text-align:center}
@@ -165,7 +170,7 @@ body{
 .pad #tJump.on{background:#5d275d}
 .hint{font-size:12px;color:var(--steel);text-align:center}
 .hint b{color:var(--paper);font-weight:400}
-@container (max-width:560px){.screen{padding:1em 1.3em;gap:.7em}.logo{font-size:3.3em}.screen .p,.screen .keys,.medal-key,.lvl .st,#clearGoals{display:none}.goal .gp{display:none}.goal{grid-template-columns:1fr auto}.h{font-size:1.9em}.stats dd{font-size:1.3em}.grid{gap:.4em}.lvl{padding:.3em .5em}}
+@container (max-width:560px){#sTitle .logo{font-size:2.4em}#sTitle{gap:.55em;padding-block:.8em}.screen{padding:1em 1.3em;gap:.7em}.logo{font-size:3.3em}.screen .p,.screen .keys,.medal-key,.lvl .st,#clearGoals{display:none}.goal .gp{display:none}.goal{grid-template-columns:1fr auto}.h{font-size:1.9em}.stats dd{font-size:1.3em}.grid{gap:.4em}.lvl{padding:.3em .5em}}
 @media (prefers-reduced-motion:reduce){#card{transition:none}.btn:hover{transform:none}}
 </style>
 
@@ -189,6 +194,7 @@ body{
 
       <section id="sTitle" class="screen left">
         <div class="kicker">A pilgrimage through Krishna's temple towns</div>
+        <button class="hud-btn corner" id="soundBtn" type="button">Sound: on</button>
         <h1 class="logo">Gwala Kanha<small class="tagline">The Lost Calves of Gokul</small></h1>
         <p class="p">King Kansa's demons have scattered the calves of Gokul and carried off Kanha's friends. Run and leap from Vrindavan to Dwarka, gather pots of dahi, find hidden peacock feathers, and defeat Kansa's demons to bring everyone home.</p>
         <div class="row">
@@ -196,7 +202,6 @@ body{
           <button class="btn alt" id="levelsBtn" type="button">Levels</button>
           <button class="btn alt" id="mapBtn" type="button">Temple Map</button>
           <button class="btn alt" id="bookBtn" type="button">Demon Book</button>
-          <button class="btn alt" id="soundBtn" type="button">Sound: on</button>
         </div>
         <div class="goals" id="titleGoals"></div>
         <div class="keys"><b>← →</b>move <b>Space</b>jump (hold to go higher) <b>Esc</b>pause</div>
